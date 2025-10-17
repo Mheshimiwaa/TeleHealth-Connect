@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}TeleHealth Connect{% endblock %}</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <h1><a href="{{ url_for('main.dashboard') }}">TeleHealth Connect</a></h1>
+      <div class="nav-links">
+        {% if session.get('user_id') %}
+          <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
+          <a href="{{ url_for('auth.logout') }}">Logout ({{ session.get('username') }})</a>
+        {% else %}
+          <a href="{{ url_for('main.home') }}">Home</a>
+          <a href="{{ url_for('auth.login') }}">Login</a>
+          <a href="{{ url_for('auth.register') }}">Register</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Page-specific content -->
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; 2025 TeleHealth Connect</p>
+  </footer>
+</body>
+</html>

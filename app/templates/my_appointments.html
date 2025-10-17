@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}My Appointments - TeleHealth Connect{% endblock %}
+
+{% block content %}
+<div class="appointments-container">
+  <h2>My Appointments</h2>
+
+  {% if appointments %}
+    <table class="doctor-table">
+      <thead>
+        <tr>
+          <th>Doctor</th>
+          <th>Specialty</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for appt in appointments %}
+          <tr>
+            <td>{{ appt.doctor_name }}</td>
+            <td>{{ appt.specialty }}</td>
+            <td>{{ appt.date }}</td>
+            <td>{{ appt.time }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>You have no booked appointments yet.</p>
+  {% endif %}
+
+  <p><a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a></p>
+</div>
+{% endblock %}

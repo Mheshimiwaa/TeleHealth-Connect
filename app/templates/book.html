@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Book Appointment - TeleHealth Connect{% endblock %}
+
+{% block content %}
+<div class="book-container">
+  <h2>Book Appointment with {{ doctor.name }}</h2>
+
+  <form method="POST" class="book-form">
+    <label>Date</label>
+    <input type="date" name="date" required>
+
+    <label>Time</label>
+    <input type="time" name="time" required>
+
+    <button type="submit" class="btn">Book Now</button>
+  </form>
+
+  <p><a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a></p>
+</div>
+{% endblock %}

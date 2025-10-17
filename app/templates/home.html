@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}TeleHealth Connect{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>TeleHealth Connect</h1>
+    <p>Book appointments, consult doctors, and manage your health — all online.</p>
+
+    {% if session.get('user_id') %}
+      <a href="{{ url_for('main.dashboard') }}" class="btn-primary">Go to Dashboard</a>
+    {% else %}
+      <div class="btn-group">
+        <a href="{{ url_for('auth.register') }}" class="btn-primary">Get Started</a>
+        <a href="{{ url_for('auth.login') }}" class="btn-secondary">Login</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature">
+    <h3>Trusted Doctors</h3>
+    <p>Connect with certified medical professionals from anywhere.</p>
+  </div>
+  <div class="feature">
+    <h3>Easy Appointments</h3>
+    <p>Book and manage your appointments effortlessly.</p>
+  </div>
+  <div class="feature">
+    <h3>Secure Platform</h3>
+    <p>Your health data is private and encrypted.</p>
+  </div>
+</section>
+{% endblock %}

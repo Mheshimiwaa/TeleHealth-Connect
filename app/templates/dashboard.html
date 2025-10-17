@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - TeleHealth Connect{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+  <h2>Dashboard</h2>
+
+  {% if doctors %}
+    <table class="doctor-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Specialty</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for doctor in doctors %}
+          <tr>
+            <td>{{ doctor.name }}</td>
+            <td>{{ doctor.specialty }}</td>
+            <td>
+              <a class="btn" href="{{ url_for('main.book_appointment', doctor_id=doctor.id) }}">
+                Book Appointment
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No doctors available at the moment.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}My Appointments{% endblock %}
+
+{% block content %}
+<h2>My Upcoming Appointments</h2>
+
+{% if appointments %}
+    <table>
+        <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Specialty</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>{{ appt.doctor_name }}</td>
+                <td>{{ appt.specialty }}</td>
+                <td>{{ appt.date }}</td>
+                <td>{{ appt.time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>You have no upcoming appointments.</p>
+{% endif %}
+
+<a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a>
+{% endblock %}
